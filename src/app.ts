@@ -7,7 +7,7 @@ const adressInput = (document.getElementById(
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
-declare var google: any;
+// declare var google: any;
 
 function searchAdressHandler(event: Event) {
   event.preventDefault();
@@ -23,6 +23,7 @@ function searchAdressHandler(event: Event) {
       )}&key=${GOOGLE_API_KEY}`
     )
     .then((res) => {
+      console.log(res);
       if (res.data.status !== "OK") {
         throw new Error("Could not fetch location!");
       }
@@ -31,7 +32,7 @@ function searchAdressHandler(event: Event) {
         document.getElementById("map") as HTMLElement,
         {
           center: coordinates,
-          zoom: 5,
+          zoom: 16,
         }
       );
       new google.maps.Marker({ position: coordinates, map: map });
